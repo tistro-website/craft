@@ -1,0 +1,70 @@
+
+
+
+
+
+
+
+
+<style>
+    .form-control {
+  display: block;
+  width: 50%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #464a4c;
+  background-color: #fff;
+  background-image: none;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #7F7FFF;
+  border-color: #5cb85c;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+{% include '_layouts/header1.twig'%}
+    </style>
+
+
+
+<form method="post" accept-charset="UTF-8">
+    {{ getCsrfInput() }}
+    <input type="hidden" name="action" value="users/setPassword">
+    <input type="hidden" name="code" value="{{ code }}">
+    <input type="hidden" name="id" value="{{ id }}">
+
+
+    <fieldset>
+        <legend>Resert Password</legend>
+<h3><p align="center">Please enter your details to resert your account</p></h3>
+
+
+    <h3><label for="newPassword">New Password</label></h3>
+    <input id="newPassword" type="password" name="newPassword" name="fullname" class="form-control"  placeholder="Please enter your New password!" class="pure-u-23-24"     >
+    {% if errors is defined %}
+        <ul class="errors">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+  <br> <input type="submit" value="Resert Password"   class="btn-success" >
+    </fieldset>
+</form>
+</body>
+<footer>{% include '_layouts/footer.twig'%}</footer>

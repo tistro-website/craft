@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact us</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="http://localhost:35729/livereload.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+  <link type="text/css" rel="stylesheet" href="../public/css/froala_blocks.css">
+
+  <style>
+    .fdb-block {
+      border-bottom: solid 1px #EEE;
+    }
+  </style>
+  {% include '_layouts/header1.twig'%}
+</head>
+
+<body>
+
+<section class="fdb-block" style="background-image: url(../public/imgs/bg_0.svg)">
+<div class="container">
+<div class="row-100">
+<div class="col text-center">
+<div class="fdb-box fdb-touch">
+<h1 class="fa fa-address-book-o" >Contact Us</h1>
+</div>
+</div>
+
+<div class="row-70"></div>
+<div class="row justify-content-center">
+<div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
+</div>
+
+<div class="row-100"></div>
+</div>
+</div>
+
+<div class="container">
+<div class="fdb-box fdb-touch">
+<div class="row-100"></div>
+<h2 class>Contact Details</h2>
+<div class="row">
+<div class="col-12 col-md-6 col-lg-5">
+          Contact us on:<p>
+          Email:wessel@code-etal.tech<p>
+          call:+27 (0) 11 447 1550  <p>
+          Address: 2 Selbourne Rd, Fourways, Sandton <p>
+<div class="container-fluid p-0 pb-3">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.1978634888055!2d27.976295315026437!3d-26.027081283517006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95768f4677fca7%3A0x46d8af04477281c4!2sCode+Etal!5e0!3m2!1sen!2sza!4v1508927608285" width="100%" height="300" frameborder="0" style="border:10" allowfullscreen></iframe>
+</div>
+</div> 
+
+<div class="col-12 col-md-6 ml-auto">
+<h2>Drop us a line</h2>
+<div class="row">
+<div class="col">
+
+{% macro errorList(errors) %}
+    {% if errors %}
+        <ul class="errors">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% from _self import errorList %}
+
+<form method="post" accept-charset="UTF-8">
+    {{ getCsrfInput() }}
+    <input type="hidden" name="action" value="entries/saveEntry">
+    <input type="hidden" name="redirect" value="success">
+    <input type="hidden" name="entryId" value="{{ entry.id }}">
+    <input type="hidden" name="sectionId" value="contact-us">
+    <input type="hidden" name="enabled" value="1">
+
+
+<label for="title">Firstname</label>
+<input type="text" class="form-control" placeholder="Firstname"
+{%- if entry is defined %} value="{{ entry.title }}"{% endif -%}>
+
+    {% if entry is defined %}
+        {{ errorList(entry.getErrors('title')) }}
+    {% endif %}
+
+
+</div>
+<div class="col">
+<label for="lastname">Lastname</label>
+<input type="text" class="form-control" placeholder="Lastname">
+</div>
+</div>
+
+<div class="row mt-4">
+<div class="col">
+<label for="email">Email</label>
+<input type="email" class="form-control" placeholder="Email">
+</div>
+</div>
+
+<div class="row mt-4">
+<div class="col">
+<label for="phone">Contact Details</label>
+<input type="text" class="form-control" placeholder="Phone">
+</div>
+</div>
+
+<div class="row mt-4">
+<div class="col">
+<label for="body">Message</label>
+<textarea id="body" class="form-control" name="message" rows="5" placeholder="How can we help?">
+ {%- if entry is defined %}{{ entry.body }}{% endif -%}
+    </textarea>
+
+    {% if entry is defined %}
+        {{ errorList(entry.getErrors('body')) }}
+    {% endif %}</div>
+</div>
+<div class="row mt-4">
+<div class="col">
+<button type="submit" class="btn" value="Publish">Contact Us</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+</body>
+
+
+<footer>
+{% include '_layouts/footer' %}
+</footer>
+
+</html>

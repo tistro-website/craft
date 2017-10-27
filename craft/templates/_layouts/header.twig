@@ -1,0 +1,25 @@
+{% set nav = [
+    {'title':'Home', 'link':siteUrl, 'class':'homepage'},
+    {'title':'Faq', 'link':url('faq'), 'class':'faq'},
+      {'title':'Testimonials', 'link':url('testimonials'), 'class':'testimonials'},
+    {'title':'Contact', 'link':url('contact'), 'class':'contact-us'},
+]%}
+
+
+
+ <div class="wrapper">
+   <class header="HEADER">
+       <h1><a href="{{siteUrl}}"> {{siteName}}</a></h1>
+<nav align="center">
+
+{% if (nav is defined) and (nav is iterable) %}
+    
+    {% for navItem in nav %}
+        <class="{{ navItem.class }}"><a href="{{ navItem.link }}">{{ navItem.title }}</a>
+    {% endfor %}
+    
+{% endif %}
+<nav>
+       
+       
+ 

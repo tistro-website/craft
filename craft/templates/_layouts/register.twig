@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="http://localhost:35729/livereload.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link type="text/css" rel="stylesheet" href="../public/css/froala_blocks.css">
+<style>
+.fdb-block {
+border-bottom: solid 1px #EEE;
+    }
+</style>
+{% include '_layouts/header1.twig'%}
+</head>
+
+
+  <body>
+  <section class="fdb-block" style="background-image: url(../public/imgs/bg_0.svg)">
+  <div class="container">
+  <div class="row-100">
+  <div class="col text-center">
+  <div class="fdb-box fdb-touch">
+  <h1 class="fa fa-registered ">Register</h1>
+  </div>
+  </div>
+  <div class="row-70"></div>
+  <div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
+  </div>
+  <div class="row-100"></div>
+  </div>
+  </div>
+  <div class="container">
+  <div class="fdb-box fdb-touch">
+  <div class="row-100"> </div>   
+  <div class="row">
+  <div class="col text-center">
+
+    <form method="post" accept-charset="UTF-8">
+    {{ getCsrfInput() }}
+    <input type="hidden" name="action" value="users/saveUser">
+    <input type="hidden" name="redirect" value="regsuccess">
+    {% macro errorList(errors) %}
+    {% if errors %}
+    <ul class="errors">
+    {% for error in errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endmacro %}
+    {% from _self import errorList %}
+    <p class="text-h3">Please enter your details to register your account. </p>
+    </div>
+    </div>
+    <div class="row align-items-center">
+    <div class="col mt-4">  
+    <h4><label for="username">Username</label></h4>
+    <input id="username" type="text" name="username" class="form-control" placeholder="Username"
+    {%- if account is defined %} value="{{ account.username }}"{% endif -%}>
+    {% if account is defined %}
+    {{ errorList(account.getErrors('username')) }}
+    {% endif %}
+    </div>
+    </div>
+    <div class="row align-items-center mt-4">
+     <div class="col">
+    <h4><label for="email">Email</label></h4>
+    <input id="email" type="text" name="email" class="form-control" placeholder="Email"
+    {%- if account is defined %} value="{{ account.email }}"{% endif %}>
+    {% if account is defined %}
+    {{ errorList(account.getErrors('email')) }}
+    {% endif %}
+    </div>
+    </div>
+    <div class="row align-items-center mt-4">
+    <div class="col">
+    <h4><label for="password">Password</label></h4>
+    <input id="password" type="password" name="password" class="form-control" placeholder=" Password" 
+    {%- if account is defined %} value="{{ account.password }}"{% endif %}>
+    {% if account is defined %}
+        {{ errorList(account.getErrors('password')) }}
+    {% endif %}
+    </div>
+    </div>
+    <button class="btn mt-4" input type="submit" value="Register">Register</button>
+    </form>
+    </section>
+    </body>
+
+<footer> 
+{% include '_layouts/footer.twig'%} 
+</footer>
+
+</html>
